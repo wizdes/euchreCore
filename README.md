@@ -1,0 +1,4 @@
+euchreCore
+==========
+
+Euchre Core Code
