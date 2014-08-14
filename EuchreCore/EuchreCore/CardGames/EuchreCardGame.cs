@@ -8,5 +8,19 @@ namespace EuchreCore.CardGames
 {
     public class EuchreCardGame : CardGame
     {
+        public override void init()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void run()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void clear()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

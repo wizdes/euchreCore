@@ -6,10 +6,7 @@ using System.Threading.Tasks;
 
 namespace EuchreCore.CardGames
 {
-    abstract public class CardGame
+    abstract class GameStage
     {
-        public abstract void init();
-        public abstract void run();
-        public abstract void clear();
     }
 }
