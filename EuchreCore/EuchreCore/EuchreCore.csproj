@@ -43,8 +43,11 @@
   <ItemGroup>
     <Compile Include="CardGameElements\Card.cs" />
     <Compile Include="CardGameElements\Deck.cs" />
+    <Compile Include="CardGameElements\PlayerHand.cs" />
     <Compile Include="CardGames\CardGame.cs" />
     <Compile Include="CardGames\EuchreCardGame.cs" />
+    <Compile Include="CardGames\GameStage.cs" />
+    <Compile Include="CardGames\HeartsPassingGameStage.cs" />
     <Compile Include="CardGames\HeartsWarCardGame.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

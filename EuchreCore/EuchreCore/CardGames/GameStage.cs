@@ -8,5 +8,6 @@ namespace EuchreCore.CardGames
 {
     abstract class GameStage
     {
+        public abstract void run();
     }
 }
