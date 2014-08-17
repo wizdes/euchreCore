@@ -31,11 +31,18 @@ namespace EuchreCore.CardGames
         public override void run()
         {
             // run the passing stage of the game
-            GameStage passingStage = new HeartsPassingGameStage(deck, playerHands);
+            bool gameFinished = false;
 
-            passingStage.run();
+            int round = 0;
 
-            // run the playing stage of the game
+            while (!gameFinished)
+            {
+                GameStage passingStage = new HeartsPassingGameStage(deck, playerHands, players);
+
+                passingStage.run(round);
+
+                // run the playing stage of the game                
+            }
         }
 
         public override void clear()

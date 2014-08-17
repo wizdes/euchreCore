@@ -14,7 +14,7 @@ namespace EuchreCore.CardGameElements
         Spades
     }
 
-    internal class Card
+    public class Card
     {
         private int value;
         private Suit suit_value;

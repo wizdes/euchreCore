@@ -9,5 +9,7 @@ namespace EuchreCore.CardGames
     abstract class GameStage
     {
         public abstract void run();
+
+        public abstract void run(int round);
     }
 }

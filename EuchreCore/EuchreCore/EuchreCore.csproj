@@ -49,6 +49,8 @@
     <Compile Include="CardGames\GameStage.cs" />
     <Compile Include="CardGames\HeartsPassingGameStage.cs" />
     <Compile Include="CardGames\HeartsWarCardGame.cs" />
+    <Compile Include="PlayerClass\HeartsPlayer.cs" />
+    <Compile Include="PlayerClass\Player.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
