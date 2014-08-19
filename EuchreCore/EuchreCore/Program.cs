@@ -12,7 +12,7 @@ namespace EuchreCore
         static void Main(string[] args)
         {
             //Create the Game
-            CardGame game = new CardGame();
+            CardGame game = new HeartsCardGame();
 
             // initialize the game
             game.init();

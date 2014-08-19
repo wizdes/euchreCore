@@ -8,7 +8,7 @@ using EuchreCore.PlayerClass;
 
 namespace EuchreCore.CardGames
 {
-    class HeartsWarCardGame : CardGame
+    class HeartsCardGame : CardGame
     {
         private Deck deck;
         private List<PlayerHand> playerHands;
@@ -39,9 +39,15 @@ namespace EuchreCore.CardGames
             {
                 GameStage passingStage = new HeartsPassingGameStage(deck, playerHands, players);
 
+                // after this, each playerHand is valid, and players know what is going on
                 passingStage.run(round);
 
-                // run the playing stage of the game                
+                // run the playing stage of the game
+                GameStage playingStage = new HeartsPlayingGameStage(deck, playerHands, players);
+
+                playingStage.run(round);
+
+                round++;
             }
         }
 

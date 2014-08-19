@@ -35,9 +35,15 @@ namespace EuchreCore.CardGames
                 player.getCardsToPass();
             }
 
+            // wait for the players to be ready. This is necessary for a server-based approach.
+            foreach (Player player in players)
+            {
+                player.waitToBeReady();
+            }
+
             // now you have all the cards you want to pass
             // pass them!
-            Dictionary<int, List<Card>> cardsToGameMap = getAndOrganizePassedCardsApp(players);
+            Dictionary<int, List<Card>> cardsToGameMap = getAndOrganizePassedCardsApp(players, roundNumber);
 
             for(int i = 0; i < players.Count; i++)
             {
@@ -46,7 +52,7 @@ namespace EuchreCore.CardGames
 
         }
 
-        private Dictionary<int, List<Card>> getAndOrganizePassedCardsApp(List<Player> list)
+        private Dictionary<int, List<Card>> getAndOrganizePassedCardsApp(List<Player> list, int roundNumber)
         {
             throw new NotImplementedException();
         }

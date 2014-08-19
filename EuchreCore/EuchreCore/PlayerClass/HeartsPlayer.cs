@@ -14,6 +14,11 @@ namespace EuchreCore.PlayerClass
             throw new NotImplementedException();
         }
 
+        public override void waitToBeReady()
+        {
+            
+        }
+
         public override void giveCards(List<Card> cardsToGame)
         {
             throw new NotImplementedException();

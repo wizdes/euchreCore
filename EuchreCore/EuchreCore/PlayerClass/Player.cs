@@ -10,6 +10,9 @@ namespace EuchreCore.PlayerClass
     public abstract class Player
     {
         public abstract void getCardsToPass();
+
+        public abstract void waitToBeReady();
+
         public abstract void giveCards(List<Card> cardsToGame);
     }
 }
