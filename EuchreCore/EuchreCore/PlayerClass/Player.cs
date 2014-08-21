@@ -14,5 +14,6 @@ namespace EuchreCore.PlayerClass
         public abstract void waitToBeReady();
 
         public abstract void giveCards(List<Card> cardsToGame);
+        public abstract void play();
     }
 }

@@ -23,5 +23,10 @@ namespace EuchreCore.PlayerClass
         {
             throw new NotImplementedException();
         }
+
+        public override void play()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
