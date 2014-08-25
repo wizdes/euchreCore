@@ -12,13 +12,11 @@ namespace EuchreCore.CardGames
     class HeartsCardGame : CardGame
     {
         private Deck deck;
-        private List<PlayerHand> playerHands;
         private List<Player> players;
         private GameState HeartsGameState;
 
         public HeartsCardGame()
         {
-            playerHands = new List<PlayerHand>();
             players = new List<Player>();
             HeartsGameState = new GameState();
             deck = new Deck();
@@ -38,8 +36,6 @@ namespace EuchreCore.CardGames
                     playerHand.Add(deck.deal());
                 }
 
-                playerHands.Add(playerHand);
-
                 CmdInterface input;
                 switch (inputType)
                 {
@@ -54,7 +50,7 @@ namespace EuchreCore.CardGames
 
                 }
 
-                players.Add(new HeartsPlayer(input, i));
+                players.Add(new HeartsPlayer(input, i, playerHand));
             }
 
             // set up the hearts game state
@@ -69,13 +65,13 @@ namespace EuchreCore.CardGames
 
             while (!gameFinished)
             {
-                GameStage passingStage = new HeartsPassingGameStage(deck, playerHands, players);
+                GameStage passingStage = new HeartsPassingGameStage(players);
 
                 // after this, each playerHand is valid, and players know what is going on
                 passingStage.run(round);
 
                 // run the playing stage of the game
-                GameStage playingStage = new HeartsPlayingGameStage(deck, playerHands, players);
+                GameStage playingStage = new HeartsPlayingGameStage(players);
 
                 playingStage.run(round);
 

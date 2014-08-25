@@ -6,6 +6,9 @@ using System.Text;
 using System.Threading.Tasks;
 using EuchreCore.CardGameElements;
 
+// TODO: NOT USED!!!!
+// BUG: DO NOT USE THIS. We will use AI interfaces instead.
+
 namespace EuchreCore.PlayerClass
 {
     class HeartsAIPlayer : Player
@@ -20,12 +23,17 @@ namespace EuchreCore.PlayerClass
             throw new NotImplementedException();
         }
 
-        public override void giveCards(List<Card> cardsToGame)
+        public override void play()
         {
             throw new NotImplementedException();
         }
 
-        public override void play()
+        public override void removeCard(Card card)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void giveCard(Card card)
         {
             throw new NotImplementedException();
         }

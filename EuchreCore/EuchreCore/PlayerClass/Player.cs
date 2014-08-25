@@ -10,6 +10,13 @@ namespace EuchreCore.PlayerClass
 {
     public abstract class Player
     {
+        protected PlayerHand playerHand;
+
+        public PlayerHand PlayerHand
+        {
+            get { return playerHand; }
+        }
+
         protected int playerId;
 
         protected CmdInterface cmdInterface;
@@ -23,7 +30,10 @@ namespace EuchreCore.PlayerClass
 
         public abstract void waitToBeReady();
 
-        public abstract void giveCards(List<Card> cardsToGame);
         public abstract void play();
+
+        public abstract void removeCard(Card card);
+
+        public abstract void giveCard(Card card);
     }
 }

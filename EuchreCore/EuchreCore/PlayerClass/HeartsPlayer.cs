@@ -11,7 +11,7 @@ namespace EuchreCore.PlayerClass
 {
     public class HeartsPlayer : Player
     {
-        public HeartsPlayer(CmdInterface cmdInterface, int playerValue)
+        public HeartsPlayer(CmdInterface cmdInterface, int playerValue, PlayerHand playerHand)
         {
             if (cmdInterface != null)
             {
@@ -22,8 +22,13 @@ namespace EuchreCore.PlayerClass
                 this.cmdInterface = new AICmdInterface();
             }
 
-            this.playerId = playerValue;
+            playerId = playerValue;
+
+            this.playerHand = playerHand;
         }
+
+        public HeartsPlayer(CmdInterface cmdInterface, int playerValue)
+            : this(cmdInterface, playerValue, new PlayerHand()) {}
 
         public HeartsPlayer(int playerValue) : this(null, playerValue) {}
 
@@ -59,14 +64,19 @@ namespace EuchreCore.PlayerClass
             
         }
 
-        public override void giveCards(List<Card> cardsToGame)
+        public override void play()
         {
             throw new NotImplementedException();
         }
 
-        public override void play()
+        public override void removeCard(Card card)
         {
-            throw new NotImplementedException();
+            playerHand.Remove(card);
+        }
+
+        public override void giveCard(Card card)
+        {
+            playerHand.Add(card);
         }
     }
 }

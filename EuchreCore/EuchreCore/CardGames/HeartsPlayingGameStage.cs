@@ -15,7 +15,7 @@ namespace EuchreCore.CardGames
         private List<PlayerHand> playerHands;
         private List<Player> players; 
 
-        public HeartsPlayingGameStage(Deck deck, List<PlayerHand> playerHands, List<Player> players)
+        public HeartsPlayingGameStage(List<Player> players)
         {
             this.deck = deck;
             this.playerHands = playerHands;

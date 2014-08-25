@@ -10,15 +10,10 @@ namespace EuchreCore.CardGames
 {
     class HeartsPassingGameStage : GameStage
     {
-        private Deck deck;
-        private List<PlayerHand> playerHands;
         private List<Player> players; 
 
-        public HeartsPassingGameStage(Deck deck, List<PlayerHand> playerHands, List<Player> players)
+        public HeartsPassingGameStage(List<Player> players)
         {
-            // do nothing
-            this.deck = deck;
-            this.playerHands = playerHands;
             this.players = players;
         }
 
@@ -34,7 +29,7 @@ namespace EuchreCore.CardGames
             // each player selects the cards they want to pass over
             foreach (Player player in players)
             {
-                cardsToPass.Add(player.getCardsToPass(playerHands.ElementAt(player.Id)));
+                cardsToPass.Add(player.getCardsToPass(player.PlayerHand));
             }
 
             // wait for the players to be ready. This is necessary for a server-based approach.
@@ -49,7 +44,16 @@ namespace EuchreCore.CardGames
 
             for(int i = 0; i < players.Count; i++)
             {
-                players[i].giveCards(cardsToGameMap[i]);
+                List<Card> cardsToGiveAway = cardsToPass.ElementAt(i);
+                foreach (Card c in cardsToGiveAway)
+                {
+                    players[i].removeCard(c);
+                }
+
+                foreach (Card c in cardsToGameMap[i])
+                {
+                    players[i].giveCard(c);
+                }
             }
         }
 
@@ -71,10 +75,6 @@ namespace EuchreCore.CardGames
             }
             for (int i = 0; i < 4; i++)
             {
-
-                // TODO: add the remove card part
-                throw new NotImplementedException();
-
                 cardsToMap.Add((i + delta)%3, cardsToPass[i]);
             }
 
