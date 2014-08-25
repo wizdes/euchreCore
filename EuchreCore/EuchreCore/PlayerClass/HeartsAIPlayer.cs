@@ -7,18 +7,8 @@ using EuchreCore.CardGameElements;
 
 namespace EuchreCore.PlayerClass
 {
-    public class HeartsPlayer : Player
+    class HeartsAIPlayer : Player
     {
-        public HeartsPlayer(int playerValue)
-        {
-            playerId = playerValue;
-        }
-
-
-        public HeartsPlayer() : this(0)
-        {
-        }
-
         public override List<Card> getCardsToPass(PlayerHand hand)
         {
             throw new NotImplementedException();
@@ -26,7 +16,7 @@ namespace EuchreCore.PlayerClass
 
         public override void waitToBeReady()
         {
-            
+            throw new NotImplementedException();
         }
 
         public override void giveCards(List<Card> cardsToGame)

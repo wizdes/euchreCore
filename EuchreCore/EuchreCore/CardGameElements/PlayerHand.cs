@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace EuchreCore.CardGameElements
 {
-    internal class PlayerHand
+    public class PlayerHand
     {
         private List<Card> playerHand;
 

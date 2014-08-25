@@ -32,7 +32,7 @@ namespace EuchreCore.CardGames
             // each player selects the cards they want to pass over
             foreach (Player player in players)
             {
-                player.getCardsToPass();
+                player.getCardsToPass(playerHands.ElementAt(player.Id));
             }
 
             // wait for the players to be ready. This is necessary for a server-based approach.

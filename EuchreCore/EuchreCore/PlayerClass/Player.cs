@@ -9,7 +9,14 @@ namespace EuchreCore.PlayerClass
 {
     public abstract class Player
     {
-        public abstract void getCardsToPass();
+        protected int playerId;
+
+        public int Id
+        {
+            get { return playerId; }
+        }
+
+        public abstract List<Card> getCardsToPass(PlayerHand hand);
 
         public abstract void waitToBeReady();
 

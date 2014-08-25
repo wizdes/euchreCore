@@ -25,7 +25,7 @@ namespace EuchreCore.CardGames
             for (int i = 0; i < 4; i++)
             {
                 playerHands.Add(new PlayerHand());
-                players.Add(new HeartsPlayer());
+                players.Add(new HeartsAIPlayer());
             }
 
             // set up the hearts game state
