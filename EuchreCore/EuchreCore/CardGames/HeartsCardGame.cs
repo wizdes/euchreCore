@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using EuchreCore.CardGameElements;
+using EuchreCore.Interface;
 using EuchreCore.PlayerClass;
 
 namespace EuchreCore.CardGames
@@ -15,17 +16,45 @@ namespace EuchreCore.CardGames
         private List<Player> players;
         private GameState HeartsGameState;
 
-        public override void init()
+        public HeartsCardGame()
+        {
+            playerHands = new List<PlayerHand>();
+            players = new List<Player>();
+            HeartsGameState = new GameState();
+            deck = new Deck();
+        }
+
+        public override void init(IOType inputType)
         {
             // set up the deck
-            deck = new Deck();
             deck.shuffle();
 
             // create the player hands
             for (int i = 0; i < 4; i++)
             {
-                playerHands.Add(new PlayerHand());
-                players.Add(new HeartsAIPlayer());
+                PlayerHand playerHand = new PlayerHand();
+                for (int j = 0; j < 13; j++)
+                {
+                    playerHand.Add(deck.deal());
+                }
+
+                playerHands.Add(playerHand);
+
+                CmdInterface input;
+                switch (inputType)
+                {
+                    case IOType.AI:
+                        input = new AICmdInterface();
+                        break;
+                    case IOType.CmdLine:
+                        input = new CommandLineCmdInterface();
+                        break;
+                    default:
+                        throw new Exception("Bad IO input");
+
+                }
+
+                players.Add(new HeartsPlayer(input, i));
             }
 
             // set up the hearts game state

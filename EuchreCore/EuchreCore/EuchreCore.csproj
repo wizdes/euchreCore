@@ -52,8 +52,9 @@
     <Compile Include="CardGames\HeartsPassingGameStage.cs" />
     <Compile Include="CardGames\HeartsPlayingGameStage.cs" />
     <Compile Include="CardGames\HeartsCardGame.cs" />
-    <Compile Include="Interface\CommandLineInterface.cs" />
-    <Compile Include="Interface\Interface.cs" />
+    <Compile Include="Interface\AICmdInterface.cs" />
+    <Compile Include="Interface\CommandLineCmdInterface.cs" />
+    <Compile Include="Interface\CmdInterface.cs" />
     <Compile Include="PlayerClass\HeartsAIPlayer.cs" />
     <Compile Include="PlayerClass\HeartsPlayer.cs" />
     <Compile Include="PlayerClass\Player.cs" />

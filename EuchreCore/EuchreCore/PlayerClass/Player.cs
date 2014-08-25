@@ -4,12 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using EuchreCore.CardGameElements;
+using EuchreCore.Interface;
 
 namespace EuchreCore.PlayerClass
 {
     public abstract class Player
     {
         protected int playerId;
+
+        protected CmdInterface cmdInterface;
 
         public int Id
         {

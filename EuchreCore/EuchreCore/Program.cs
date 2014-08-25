@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using EuchreCore.CardGames;
+using EuchreCore.Interface;
 
 namespace EuchreCore
 {
@@ -15,7 +16,7 @@ namespace EuchreCore
             CardGame game = new HeartsCardGame();
 
             // initialize the game
-            game.init();
+            game.init(IOType.CmdLine);
 
             // run the game
             game.run();

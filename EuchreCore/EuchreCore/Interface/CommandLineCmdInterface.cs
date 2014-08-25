@@ -6,16 +6,17 @@ using System.Threading.Tasks;
 
 namespace EuchreCore.Interface
 {
-    public class CommandLineInterface : Interface
+    public class CommandLineCmdInterface : CmdInterface
     {
-        internal override void SendOutput()
+        internal override void SendOutput(string str)
         {
-            throw new NotImplementedException();
+            Console.Write(str);
         }
 
         internal override string GetInputLine()
         {
-            throw new NotImplementedException();
+            return Console.ReadLine();
+
         }
     }
 }

@@ -17,16 +17,21 @@ namespace EuchreCore.CardGameElements
 
         public void shuffle()
         {
-            Card[] cardArray = cards.ToArray();
-            for (int i = 0; i < 52; i++)
+            Shuffle(cards);
+        }
+
+        public static void Shuffle<T>(IList<T> list)
+        {
+            Random rng = new Random();
+            int n = list.Count;
+            while (n > 1)
             {
-                Random rand = new Random();
-                int switchWith = rand.Next(52);
-                Card tempCardRef = cardArray[i];
-                cardArray[i] = cardArray[switchWith];
-                cardArray[switchWith] = tempCardRef;
+                n--;
+                int k = rng.Next(n + 1);
+                T value = list[k];
+                list[k] = list[n];
+                list[n] = value;
             }
-            cards = cardArray.ToList();
         }
 
         public Card deal()

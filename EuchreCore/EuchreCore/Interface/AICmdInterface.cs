@@ -3,25 +3,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using EuchreCore.Interface;
 
-namespace EuchreCore.CardGames
+namespace EuchreCore.Interface
 {
-    public class EuchreCardGame : CardGame
+    class AICmdInterface : CmdInterface
     {
-        public override void init(IOType inputType)
+        internal override void SendOutput(string str)
         {
             throw new NotImplementedException();
         }
 
-        public override void run()
+        internal override string GetInputLine()
         {
             throw new NotImplementedException();
         }
 
-        public override void clear()
+        public override bool isAI()
         {
-            throw new NotImplementedException();
+            return true;
         }
     }
 }

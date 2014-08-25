@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,7 +12,7 @@ namespace EuchreCore.PlayerClass
     {
         public override List<Card> getCardsToPass(PlayerHand hand)
         {
-
+            throw new NotImplementedException();
         }
 
         public override void waitToBeReady()

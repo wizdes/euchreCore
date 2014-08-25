@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using EuchreCore.PlayerClass;
 
 namespace EuchreCore.CardGameElements
 {
@@ -28,6 +29,17 @@ namespace EuchreCore.CardGameElements
         public Card[] GetListCards()
         {
             return playerHand.ToArray();
+        }
+
+        public override string ToString()
+        {
+            string cardStr = "";
+            foreach (Card c in playerHand)
+            {
+                cardStr += c +",";
+            }
+
+            return cardStr;
         }
     }
 }

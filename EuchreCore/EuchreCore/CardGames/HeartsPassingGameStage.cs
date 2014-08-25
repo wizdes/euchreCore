@@ -29,10 +29,12 @@ namespace EuchreCore.CardGames
 
         public override void run(int roundNumber)
         {
+            List<List<Card>> cardsToPass = new List<List<Card>>();
+
             // each player selects the cards they want to pass over
             foreach (Player player in players)
             {
-                player.getCardsToPass(playerHands.ElementAt(player.Id));
+                cardsToPass.Add(player.getCardsToPass(playerHands.ElementAt(player.Id)));
             }
 
             // wait for the players to be ready. This is necessary for a server-based approach.
@@ -43,18 +45,40 @@ namespace EuchreCore.CardGames
 
             // now you have all the cards you want to pass
             // pass them!
-            Dictionary<int, List<Card>> cardsToGameMap = getAndOrganizePassedCardsApp(players, roundNumber);
+            Dictionary<int, List<Card>> cardsToGameMap = removeAndGetAndOrganizePassedCardsApp(cardsToPass, roundNumber);
 
             for(int i = 0; i < players.Count; i++)
             {
                 players[i].giveCards(cardsToGameMap[i]);
             }
-
         }
 
-        private Dictionary<int, List<Card>> getAndOrganizePassedCardsApp(List<Player> list, int roundNumber)
+        private Dictionary<int, List<Card>> removeAndGetAndOrganizePassedCardsApp(List<List<Card>> cardsToPass, int roundNumber)
         {
-            throw new NotImplementedException();
+            Dictionary<int, List<Card>> cardsToMap = new Dictionary<int, List<Card>>();
+            int delta = 0;
+            switch (roundNumber%3)
+            {
+                case 0:
+                    delta = 3;
+                    break;
+                case 3:
+                    delta = 0;
+                    break;
+                default:
+                    delta = roundNumber;
+                    break;
+            }
+            for (int i = 0; i < 4; i++)
+            {
+
+                // TODO: add the remove card part
+                throw new NotImplementedException();
+
+                cardsToMap.Add((i + delta)%3, cardsToPass[i]);
+            }
+
+            return cardsToMap;
         }
     }
 }
