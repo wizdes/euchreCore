@@ -12,7 +12,8 @@ namespace EuchreCore.CardGames
     {
         private Deck deck;
         private List<PlayerHand> playerHands;
-        private List<Player> players; 
+        private List<Player> players;
+        private GameState HeartsGameState;
 
         public override void init()
         {
@@ -26,6 +27,8 @@ namespace EuchreCore.CardGames
                 playerHands.Add(new PlayerHand());
                 players.Add(new HeartsPlayer());
             }
+
+            // set up the hearts game state
         }
 
         public override void run()
