@@ -23,6 +23,16 @@ namespace EuchreCore.CardGames
     {
         public List<Trick> CardsInMiddle = new List<Trick>();
 
+        public Dictionary<int, List<Card>> CardsCollected = new Dictionary<int, List<Card>>();
+
+        public GameState()
+        {
+            for (int i = 0; i < 4; i++)
+            {
+                CardsCollected[i] = new List<Card>();
+            }
+        }
+
         public virtual void PutCardInMiddle(Card card, int player)
         {
             CardsInMiddle.Add(new Trick(card, player));
@@ -30,6 +40,11 @@ namespace EuchreCore.CardGames
 
         public virtual void ClearCardsInMiddle()
         {
+            foreach (Trick t in CardsInMiddle)
+            {
+                CardsCollected[t.player].Add(t.card);
+            }
+
             CardsInMiddle.Clear();
         }
     }

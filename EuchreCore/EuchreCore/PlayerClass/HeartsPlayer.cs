@@ -26,6 +26,8 @@ namespace EuchreCore.PlayerClass
             playerId = playerValue;
 
             this.playerHand = playerHand;
+
+            score = 0;
         }
 
         public HeartsPlayer(CmdInterface cmdInterface, int playerValue)

@@ -11,14 +11,10 @@ namespace EuchreCore.CardGames
 {
     internal class HeartsPlayingGameStage : GameStage
     {
-        private Deck deck;
-        private List<PlayerHand> playerHands;
         private List<Player> players; 
 
         public HeartsPlayingGameStage(List<Player> players)
         {
-            this.deck = deck;
-            this.playerHands = playerHands;
             this.players = players;
         }
 
@@ -51,8 +47,14 @@ namespace EuchreCore.CardGames
             }
 
             // determine points
-                // in > (game state of picked up tricks), out < (points for all)
-                // TODO: make a class that represents this, and pass it from outside
+            // in > (game state of picked up tricks), out < (points for all)
+            // TODO: make a class that represents this, and pass it from outside
+            gameState.CalculateRoundScore();
+
+            for (int i = 0; i < 4; i++)
+            {
+                players[i].score += gameState.score[i];
+            }
         }
 
         private void PlayRound(int firstPlayerMark, HeartsGameState gameState)
@@ -80,12 +82,12 @@ namespace EuchreCore.CardGames
 
         private int DetermineFirstPlayer(HeartsGameState heartsGameState, List<Player> players)
         {
-            if (heartsGameState.getLastTrickTaker() == -1)
+            if (heartsGameState.GetLastTrickTaker() == -1)
             {
                 return playerWithAceTwo(players);
             }
 
-            return heartsGameState.getLastTrickTaker();
+            return heartsGameState.GetLastTrickTaker();
         }
 
         private int playerWithAceTwo(List<Player> list)

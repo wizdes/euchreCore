@@ -49,6 +49,7 @@
     <Compile Include="CardGames\EuchreCardGame.cs" />
     <Compile Include="CardGames\GameStage.cs" />
     <Compile Include="CardGames\GameState.cs" />
+    <Compile Include="CardGames\HeartsGameState.cs" />
     <Compile Include="CardGames\HeartsPassingGameStage.cs" />
     <Compile Include="CardGames\HeartsPlayingGameStage.cs" />
     <Compile Include="CardGames\HeartsCardGame.cs" />

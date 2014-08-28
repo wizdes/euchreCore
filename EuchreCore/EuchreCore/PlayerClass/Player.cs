@@ -27,6 +27,8 @@ namespace EuchreCore.PlayerClass
             get { return playerId; }
         }
 
+        public int score;
+
         public abstract List<Card> getCardsToPass(PlayerHand hand);
 
         public abstract void waitToBeReady();
