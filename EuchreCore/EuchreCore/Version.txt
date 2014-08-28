@@ -1,0 +1,6 @@
+﻿Version 0.1000
+1:06 am 8/28/14
+We released a version of Hearts! It includes all the basic things like passing, counting cards, points assignment and even things like shooting the moon!
+Missing: Rule enforcement, real AI, a useable interface, and command line selection for play card. 
+Also: We can code UI at this point! All the data structures are there.
+Note: We should add some tests.
