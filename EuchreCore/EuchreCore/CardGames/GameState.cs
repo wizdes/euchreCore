@@ -23,7 +23,7 @@ namespace EuchreCore.CardGames
     {
         public List<Trick> CardsInMiddle = new List<Trick>();
 
-        public void PutCardInMiddle(Card card, int player)
+        public virtual void PutCardInMiddle(Card card, int player)
         {
             CardsInMiddle.Add(new Trick(card, player));
         }

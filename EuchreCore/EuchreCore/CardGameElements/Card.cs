@@ -11,7 +11,8 @@ namespace EuchreCore.CardGameElements
         Hearts,
         Diamonds,
         Clubs,
-        Spades
+        Spades,
+        None
     }
 
     public class Card
