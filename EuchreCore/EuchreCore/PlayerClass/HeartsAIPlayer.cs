@@ -8,6 +8,7 @@ using EuchreCore.CardGameElements;
 
 // TODO: NOT USED!!!!
 // BUG: DO NOT USE THIS. We will use AI interfaces instead.
+using EuchreCore.CardGames;
 
 namespace EuchreCore.PlayerClass
 {
@@ -23,7 +24,7 @@ namespace EuchreCore.PlayerClass
             throw new NotImplementedException();
         }
 
-        public override void play()
+        public override Card play(GameState gameState)
         {
             throw new NotImplementedException();
         }

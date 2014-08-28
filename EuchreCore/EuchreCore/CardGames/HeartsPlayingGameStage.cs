@@ -31,13 +31,16 @@ namespace EuchreCore.CardGames
         {
             bool continueRound = true;
             int numInternalRounds = 0;
+
+            HeartsGameState gameState = new HeartsGameState();
+
             while (continueRound)
             {
                 // first, determine who goes first
-                int firstPlayerMark = DetermineFirstPlayer();
+                int firstPlayerMark = DetermineFirstPlayer(gameState, players);
                 // in > (), out < (int of player who goes first)
 
-                PlayRound(firstPlayerMark);
+                PlayRound(firstPlayerMark, gameState);
                 
                 if (numInternalRounds == 13)
                 {
@@ -52,10 +55,9 @@ namespace EuchreCore.CardGames
                 // TODO: make a class that represents this, and pass it from outside
         }
 
-        private void PlayRound(int firstPlayerMark)
+        private void PlayRound(int firstPlayerMark, HeartsGameState gameState)
         {
             // start from that player, and iterate and go through each player
-
             Assert.IsTrue(firstPlayerMark < 4);
 
             for (int i = 0; i < 4; i++)
@@ -64,19 +66,38 @@ namespace EuchreCore.CardGames
 
                 // each player must play one card
                 // in > (game state), out < (card played)                
-                players.ElementAt(currentPlayerRound).play();
+                Card c = players.ElementAt(currentPlayerRound).play(gameState);
 
                 // update the game state to reflect (card played)
-                // TODO: have a game state where you have the played card associated with player
+                gameState.PutCardInMiddle(c, currentPlayerRound);
             }
             
             // determine who gets the trick
             // in > (game state), out < (int of player who got the trick)
             // keep track of who last picked up the trick
+            gameState.ClearCardsInMiddle();
         }
 
-        private int DetermineFirstPlayer()
+        private int DetermineFirstPlayer(HeartsGameState heartsGameState, List<Player> players)
         {
+            if (heartsGameState.getLastTrickTaker() == -1)
+            {
+                return playerWithAceTwo(players);
+            }
+
+            return heartsGameState.getLastTrickTaker();
+        }
+
+        private int playerWithAceTwo(List<Player> list)
+        {
+            for(int i = 0; i < 4; i++)
+            {
+                if (list.ElementAt(i).PlayerHand.GetListCards().Any(x => x.Suit == Suit.Clubs && x.Value == 2))
+                {
+                    return i;
+                }
+            }
+
             return -1;
         }
     }

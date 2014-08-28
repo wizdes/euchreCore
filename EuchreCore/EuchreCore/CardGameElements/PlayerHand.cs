@@ -23,7 +23,14 @@ namespace EuchreCore.CardGameElements
 
         public void Remove(Card c)
         {
-            playerHand.Remove(c);
+            foreach (Card playerCard in playerHand)
+            {
+                if (playerCard.Suit == c.Suit && playerCard.Value == c.Value)
+                {
+                    playerHand.Remove(playerCard);
+                    break;
+                }
+            }
         }
 
         public Card[] GetListCards()

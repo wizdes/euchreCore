@@ -75,7 +75,7 @@ namespace EuchreCore.CardGames
             }
             for (int i = 0; i < 4; i++)
             {
-                cardsToMap.Add((i + delta)%3, cardsToPass[i]);
+                cardsToMap.Add((i + delta) % 4, cardsToPass[i]);
             }
 
             return cardsToMap;

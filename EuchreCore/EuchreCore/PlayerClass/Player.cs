@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using EuchreCore.CardGameElements;
+using EuchreCore.CardGames;
 using EuchreCore.Interface;
 
 namespace EuchreCore.PlayerClass
@@ -30,7 +31,7 @@ namespace EuchreCore.PlayerClass
 
         public abstract void waitToBeReady();
 
-        public abstract void play();
+        public abstract Card play(GameState gameState);
 
         public abstract void removeCard(Card card);
 

@@ -5,6 +5,7 @@ using System.Runtime.Remoting.Metadata.W3cXsd2001;
 using System.Text;
 using System.Threading.Tasks;
 using EuchreCore.CardGameElements;
+using EuchreCore.CardGames;
 using EuchreCore.Interface;
 
 namespace EuchreCore.PlayerClass
@@ -55,7 +56,23 @@ namespace EuchreCore.PlayerClass
         private Card ConvertStringToCard(string s)
         {
             string suit = s.ElementAt(0).ToString();
-            int cardValue = int.Parse(s.Substring(1));
+            string remainingString = s.Remove(0, 1);
+            switch (remainingString.ToLower())
+            {
+                case "j":
+                    remainingString = "11";
+                    break;
+                case "q":
+                    remainingString = "12";
+                    break;
+                case "k":
+                    remainingString = "13";
+                    break;
+                case "a":
+                    remainingString = "1";
+                    break;
+            }
+            int cardValue = int.Parse(remainingString);
             return new Card(cardValue, Card.ConvertStrToSuit(suit));
         }
 
@@ -64,7 +81,7 @@ namespace EuchreCore.PlayerClass
             
         }
 
-        public override void play()
+        public override Card play(GameState gameState)
         {
             throw new NotImplementedException();
         }

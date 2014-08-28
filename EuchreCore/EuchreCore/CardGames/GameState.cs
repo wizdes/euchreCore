@@ -7,18 +7,30 @@ using EuchreCore.CardGameElements;
 
 namespace EuchreCore.CardGames
 {
+    public class Trick
+    {
+        public Card card;
+        public int player;
+
+        public Trick(Card card, int player)
+        {
+            this.card = card;
+            this.player = player;
+        }
+    }
+
     public class GameState
     {
-        internal List<Card> cardsInMiddle = new List<Card>();
+        public List<Trick> CardsInMiddle = new List<Trick>();
 
-        internal void putCardInMiddle(Card card)
+        public void PutCardInMiddle(Card card, int player)
         {
-            cardsInMiddle.Add(card);
+            CardsInMiddle.Add(new Trick(card, player));
         }
 
-        internal void clearCardsInMiddle()
+        public virtual void ClearCardsInMiddle()
         {
-            cardsInMiddle.Clear();
+            CardsInMiddle.Clear();
         }
     }
 }
