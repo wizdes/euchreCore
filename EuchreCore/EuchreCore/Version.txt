@@ -1,4 +1,17 @@
-﻿Version 0.1000
+﻿Need to use websockets and REST/GET with thread stopping
+http://code.msdn.microsoft.com/windowsapps/Connecting-with-WebSockets-643b10ab
+http://www.sanwebe.com/2013/05/chat-using-websocket-php-socket
+http://stackoverflow.com/questions/2696052/thread-signaling-basics
+
+So create a new interface for Web. Waits on a property to be set, and then runs.
+Web will set the property and kick out the wait.
+Browser may need to refresh to see new values, or implement a wait.
+
+Add a 'gamestate viewing' function.
+
+Obviously, web sockets will be a much better experience.
+
+Version 0.1000
 1:06 am 8/28/14
 We released a version of Hearts! It includes all the basic things like passing, counting cards, points assignment and even things like shooting the moon!
 Missing: Rule enforcement, real AI, a useable interface, and command line selection for play card. 
