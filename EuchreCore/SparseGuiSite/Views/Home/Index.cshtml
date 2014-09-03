@@ -1,11 +1,21 @@
 ﻿@{
     ViewBag.Title = "Hearts Online";
+    var gameId = ViewData["gameId"];
 }
 
 <div class="row">
     <div class="col-md-4">
         <h2></h2>
-        <p></p>
+        <p>
+            @if (gameId == "")
+            {
+                <form name="input" method="get">
+                    <input type="submit" value="Start Game">
+                </form>
+            }
+            else{
+                @gameId
+            }
+        </p>
     </div>
-
 </div>

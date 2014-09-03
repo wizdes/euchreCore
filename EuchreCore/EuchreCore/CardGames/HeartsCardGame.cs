@@ -9,7 +9,7 @@ using EuchreCore.PlayerClass;
 
 namespace EuchreCore.CardGames
 {
-    class HeartsCardGame : CardGame
+    public class HeartsCardGame : CardGame
     {
         private Deck deck;
         private List<Player> players;
