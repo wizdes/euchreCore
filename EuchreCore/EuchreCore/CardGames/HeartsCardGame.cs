@@ -45,6 +45,9 @@ namespace EuchreCore.CardGames
                     case IOType.CmdLine:
                         input = new CommandLineCmdInterface();
                         break;
+                    case IOType.Web:
+                        input = new WebCmdInterface();
+                        break;
                     default:
                         throw new Exception("Bad IO input");
 

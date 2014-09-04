@@ -56,6 +56,7 @@
     <Compile Include="Interface\AICmdInterface.cs" />
     <Compile Include="Interface\CommandLineCmdInterface.cs" />
     <Compile Include="Interface\CmdInterface.cs" />
+    <Compile Include="Interface\WebCmdInterface.cs" />
     <Compile Include="PlayerClass\HeartsAIPlayer.cs" />
     <Compile Include="PlayerClass\HeartsPlayer.cs" />
     <Compile Include="PlayerClass\Player.cs" />

@@ -9,7 +9,8 @@ namespace EuchreCore.Interface
     public enum IOType
     {
         AI,
-        CmdLine
+        CmdLine,
+        Web
     }
 
     abstract public class CmdInterface

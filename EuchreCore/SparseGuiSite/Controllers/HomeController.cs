@@ -19,7 +19,7 @@ namespace SparseGuiSite.Controllers
             Guid guid = Guid.NewGuid();
             CardGame game = new HeartsCardGame();
 
-            game.init(IOType.CmdLine);
+            game.init(IOType.Web);
 
             // pass the game state information to the ViewBag
             // pass guid to the ViewBag
