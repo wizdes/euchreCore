@@ -7,6 +7,7 @@ using System.Web.Mvc;
 using EuchreCore.CardGames;
 using EuchreCore.Interface;
 using EuchreCore.PlayerClass;
+using Microsoft.Ajax.Utilities;
 
 namespace SparseGuiSite.Controllers
 {
@@ -14,16 +15,48 @@ namespace SparseGuiSite.Controllers
     {
         IDictionary<Guid, CardGame> inMemoryMapping = new Dictionary<Guid, CardGame>();
 
+        enum WebGameState
+        {
+            ShowNewGame,
+            CreateNewGame,
+            InGameProgress
+        }
+
         public ActionResult Index()
         {
-            var queryString = Request.QueryString;
-            if (queryString.Count == 0)
+            WebGameState webGameState = GetWebGameState();
+
+            switch (webGameState)
             {
-                return View();
+                case WebGameState.ShowNewGame:
+                    return View();
+                case WebGameState.CreateNewGame:
+                    return CreateGame();
+                case WebGameState.InGameProgress:
+                    // update this to get passing stage working 9/9
+                    return View();
+                default:
+                    return View();
+            }
+        }
+
+        private WebGameState GetWebGameState()
+        {
+            if (Request.QueryString.Count == 0)
+            {
+                return WebGameState.ShowNewGame;
             }
             else
             {
-                return CreateGame();
+                string gameId = Request.QueryString["gameId"];
+                if (gameId.Equals("newGame"))
+                {
+                    return WebGameState.CreateNewGame;
+                }
+                else
+                {
+                    return WebGameState.InGameProgress;
+                }
             }
         }
 
