@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -14,6 +15,19 @@ namespace SparseGuiSite.Controllers
         IDictionary<Guid, CardGame> inMemoryMapping = new Dictionary<Guid, CardGame>();
 
         public ActionResult Index()
+        {
+            var queryString = Request.QueryString;
+            if (queryString.Count == 0)
+            {
+                return View();
+            }
+            else
+            {
+                return CreateGame();
+            }
+        }
+
+        private ActionResult CreateGame()
         {
             // if the special word is 'new game', then create a new game and return details
             // create a new game and guid to associate with

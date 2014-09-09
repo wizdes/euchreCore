@@ -9,9 +9,10 @@
     <div class="col-md-4">
         <h2></h2>
         <p>
-            @if (gameId == "")
+            @if (gameId == "" || gameId == null)
             {
                 <form name="input" method="get">
+                    <input type="hidden" name="gameId" value="newGame">                    
                     <input type="submit" value="start">
                 </form>
             }
