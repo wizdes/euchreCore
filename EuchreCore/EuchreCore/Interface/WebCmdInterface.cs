@@ -10,12 +10,13 @@ namespace EuchreCore.Interface
     {
         internal override void SendOutput(string str)
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
 
         internal override string GetInputLine()
         {
-            throw new NotImplementedException();
+            return "";
+            //throw new NotImplementedException();
         }
     }
 }

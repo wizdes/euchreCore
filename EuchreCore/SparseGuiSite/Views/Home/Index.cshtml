@@ -1,6 +1,8 @@
-﻿@{
+﻿@using System.Web.UI.WebControls
+@{
     ViewBag.Title = "Hearts Online";
     var gameId = ViewData["gameId"];
+    var gameDescription = ViewData["gameDescription"];
 }
 
 <div class="row">
@@ -10,11 +12,17 @@
             @if (gameId == "")
             {
                 <form name="input" method="get">
-                    <input type="submit" value="Start Game">
+                    <input type="submit" value="start">
                 </form>
             }
             else{
-                @gameId
+                @Html.Raw(Html.Encode(gameDescription).Replace("\n", "<br />"))
+                <br/>
+                <form name="input" method="get">
+                    <input type="hidden" name="gameId" value="@gameId">
+                    Card inputs: <input type="text" name="input">                    
+                    <input type="submit" value="play">
+                </form>
             }
         </p>
     </div>

@@ -13,12 +13,15 @@ namespace EuchreCore.CardGames
     {
         private Deck deck;
         private List<Player> players;
-        private GameState HeartsGameState;
+
+        public List<Player> Players
+        {
+            get { return players; }
+        } 
 
         public HeartsCardGame()
         {
             players = new List<Player>();
-            HeartsGameState = new GameState();
             deck = new Deck();
         }
 
