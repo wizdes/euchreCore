@@ -8,12 +8,12 @@ namespace EuchreCore.Interface
 {
     public class CommandLineCmdInterface : CmdInterface
     {
-        internal override void SendOutput(string str)
+        public override void SendOutput(string str)
         {
             Console.Write(str);
         }
 
-        internal override string GetInputLine()
+        public override string GetInputLine()
         {
             return Console.ReadLine();
 

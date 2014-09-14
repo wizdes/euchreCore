@@ -8,12 +8,12 @@ namespace EuchreCore.Interface
 {
     class AICmdInterface : CmdInterface
     {
-        internal override void SendOutput(string str)
+        public override void SendOutput(string str)
         {
             throw new NotImplementedException();
         }
 
-        internal override string GetInputLine()
+        public override string GetInputLine()
         {
             throw new NotImplementedException();
         }

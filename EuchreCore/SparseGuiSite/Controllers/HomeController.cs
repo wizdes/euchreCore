@@ -13,7 +13,7 @@ namespace SparseGuiSite.Controllers
 {
     public class HomeController : Controller
     {
-        IDictionary<Guid, CardGame> inMemoryMapping = new Dictionary<Guid, CardGame>();
+        IDictionary<Guid, HeartsCardGame> inMemoryMapping = new Dictionary<Guid, HeartsCardGame>();
 
         enum WebGameState
         {
@@ -34,6 +34,14 @@ namespace SparseGuiSite.Controllers
                     return CreateGame();
                 case WebGameState.InGameProgress:
                     // update this to get passing stage working 9/9
+                    string cardsPlayed = Request.QueryString["input"];
+                    Guid gameId = new Guid(Request.QueryString["gameId"]);
+                    HeartsCardGame game = inMemoryMapping[gameId];
+                    //todo: change from player 0
+                    WebCmdInterface webInterface = (WebCmdInterface)game.Players[0].CmdInterface;
+                    webInterface.setInputRelease(cardsPlayed);
+                    // update web cmd interface's get input to wait on update of a string
+                    ShowGameView(game, gameId);
                     return View();
                 default:
                     return View();
@@ -60,15 +68,8 @@ namespace SparseGuiSite.Controllers
             }
         }
 
-        private ActionResult CreateGame()
+        private void ShowGameView(HeartsCardGame game, Guid gameGuid)
         {
-            // if the special word is 'new game', then create a new game and return details
-            // create a new game and guid to associate with
-            Guid guid = Guid.NewGuid();
-            HeartsCardGame game = new HeartsCardGame();
-
-            game.init(IOType.Web);
-
             string gameDetails = string.Empty;
 
             int playerNum = 1;
@@ -82,8 +83,20 @@ namespace SparseGuiSite.Controllers
             // pass the game state information to the ViewBag
             // pass guid to the ViewBag
             ViewData["gameDetails"] = game;
-            ViewData["gameId"] = guid.ToString();
-            ViewData["gameDescription"] = gameDetails;
+            ViewData["gameId"] = gameGuid.ToString();
+            ViewData["gameDescription"] = gameDetails;            
+        }
+
+        private ActionResult CreateGame()
+        {
+            // if the special word is 'new game', then create a new game and return details
+            // create a new game and guid to associate with
+            Guid guid = Guid.NewGuid();
+            HeartsCardGame game = new HeartsCardGame();
+
+            game.init(IOType.Web);
+
+            ShowGameView(game, guid);
 
             //add the game to the inMemoryMapping
             inMemoryMapping.Add(guid, game);

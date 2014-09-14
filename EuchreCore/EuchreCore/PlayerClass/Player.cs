@@ -29,6 +29,11 @@ namespace EuchreCore.PlayerClass
 
         public int score;
 
+        public CmdInterface CmdInterface
+        {
+            get { return cmdInterface; }
+        }
+
         public abstract List<Card> getCardsToPass(PlayerHand hand);
 
         public abstract void waitToBeReady();

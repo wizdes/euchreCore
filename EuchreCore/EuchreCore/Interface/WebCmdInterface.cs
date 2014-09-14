@@ -2,20 +2,34 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace EuchreCore.Interface
 {
-    class WebCmdInterface : CmdInterface
+    public class WebCmdInterface : CmdInterface
     {
-        internal override void SendOutput(string str)
+        private AutoResetEvent waitHandle = new AutoResetEvent(true);
+
+        private string inputLine;
+
+        public void setInputRelease(string input)
+        {
+            inputLine = input;
+            waitHandle.Set();
+        }
+
+        public override void SendOutput(string str)
         {
             //throw new NotImplementedException();
         }
 
-        internal override string GetInputLine()
+        public override string GetInputLine()
         {
-            return "";
+            waitHandle.WaitOne();
+            string returningInput = inputLine;
+            inputLine = "";
+            return returningInput;
             //throw new NotImplementedException();
         }
     }

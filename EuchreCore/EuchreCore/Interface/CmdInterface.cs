@@ -15,9 +15,9 @@ namespace EuchreCore.Interface
 
     abstract public class CmdInterface
     {
-        abstract internal void SendOutput(string str);
+        abstract public void SendOutput(string str);
 
-        internal abstract string GetInputLine();
+        public abstract string GetInputLine();
 
         public virtual bool isAI()
         {
