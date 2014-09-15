@@ -1,30 +1,33 @@
-﻿@using System.Web.UI.WebControls
-@{
+﻿@{
     ViewBag.Title = "Hearts Online";
     var gameId = ViewData["gameId"];
     var gameDescription = ViewData["gameDescription"];
+    var playerNum = ViewData["playerNum"];
+    var gameDetails = ViewData["AllDetails"];
 }
 
 <div class="row">
     <div class="col-md-4">
         <h2></h2>
-        <p>
-            @if (gameId == "" || gameId == null)
-            {
-                <form name="input" method="get">
-                    <input type="hidden" name="gameId" value="newGame">                    
-                    <input type="submit" value="start">
-                </form>
-            }
-            else{
-                @Html.Raw(Html.Encode(gameDescription).Replace("\n", "<br />"))
-                <br/>
-                <form name="input" method="get">
-                    <input type="hidden" name="gameId" value="@gameId">
-                    Card inputs: <input type="text" name="input">                    
-                    <input type="submit" value="play">
-                </form>
-            }
-        </p>
+        @if (gameId == "" || gameId == null)
+        {
+            <form name="input" method="get">
+                <input type="hidden" name="gameId" value="newGame">
+                <input type="hidden" name="playerNum" value="-1"/>
+                <input type="submit" value="start">
+            </form>
+        }
+        else{
+            @Html.Raw(Html.Encode(gameDescription).Replace("\n", "<br />"))
+            <br/>
+            <form name="input" method="get">
+                <input type="hidden" name="gameId" value="@gameId">
+                <input type="hidden" name="playerNum" value="@playerNum" />
+                Card inputs: <input type="text" name="input">                    
+                <input type="submit" value="play">
+            </form>
+            @Html.Raw(Html.Encode(gameDetails).Replace("\n", "<br />"))
+            @playerNum
+        }
     </div>
 </div>

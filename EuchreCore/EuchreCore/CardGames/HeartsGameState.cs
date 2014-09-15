@@ -67,6 +67,12 @@ namespace EuchreCore.CardGames
                 }
             }
 
+            // at this point, let's re-assign all the tricks to their rightful owner
+            foreach (Trick t in CardsInMiddle)
+            {
+                t.player = lastTrickTaker;
+            }
+
             base.ClearCardsInMiddle();
         }
 

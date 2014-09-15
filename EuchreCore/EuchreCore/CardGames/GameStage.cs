@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace EuchreCore.CardGames
 {
-    internal abstract class GameStage
+    public abstract class GameStage
     {
         public abstract void run();
 

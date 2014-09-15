@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Threading;
 using System.Web;
 using System.Web.Mvc;
 using EuchreCore.CardGames;
@@ -13,7 +14,7 @@ namespace SparseGuiSite.Controllers
 {
     public class HomeController : Controller
     {
-        IDictionary<Guid, HeartsCardGame> inMemoryMapping = new Dictionary<Guid, HeartsCardGame>();
+        static IDictionary<Guid, HeartsCardGame> inMemoryMapping = new Dictionary<Guid, HeartsCardGame>();
 
         enum WebGameState
         {
@@ -36,10 +37,11 @@ namespace SparseGuiSite.Controllers
                     // update this to get passing stage working 9/9
                     string cardsPlayed = Request.QueryString["input"];
                     Guid gameId = new Guid(Request.QueryString["gameId"]);
+                    int player = int.Parse(Request.QueryString["playerNum"]);
                     HeartsCardGame game = inMemoryMapping[gameId];
-                    //todo: change from player 0
-                    WebCmdInterface webInterface = (WebCmdInterface)game.Players[0].CmdInterface;
+                    WebCmdInterface webInterface = (WebCmdInterface)game.Players[player].CmdInterface;
                     webInterface.setInputRelease(cardsPlayed);
+                    Thread.Sleep(100);
                     // update web cmd interface's get input to wait on update of a string
                     ShowGameView(game, gameId);
                     return View();
@@ -84,7 +86,20 @@ namespace SparseGuiSite.Controllers
             // pass guid to the ViewBag
             ViewData["gameDetails"] = game;
             ViewData["gameId"] = gameGuid.ToString();
-            ViewData["gameDescription"] = gameDetails;            
+            ViewData["gameDescription"] = gameDetails;
+            ViewData["AllDetails"] = "";
+            ViewData["playerNum"] = "0";
+
+            foreach (Player p in game.Players)
+            {
+                WebCmdInterface webInterface = ((WebCmdInterface) p.CmdInterface);
+                ViewData["AllDetails"] += webInterface.currentOutput + "\n";
+                if (webInterface.isWaiting)
+                {
+                    ViewData["playerNum"] = p.Id;
+                }
+            }
+
         }
 
         private ActionResult CreateGame()
@@ -96,10 +111,14 @@ namespace SparseGuiSite.Controllers
 
             game.init(IOType.Web);
 
-            ShowGameView(game, guid);
-
             //add the game to the inMemoryMapping
             inMemoryMapping.Add(guid, game);
+            Thread oThread = new Thread(game.run);
+            oThread.Start();
+
+            Thread.Sleep(100);
+
+            ShowGameView(game, guid);
 
             return View();
         }

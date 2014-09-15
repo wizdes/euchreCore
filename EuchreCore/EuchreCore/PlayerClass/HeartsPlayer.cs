@@ -79,13 +79,15 @@ namespace EuchreCore.PlayerClass
         }
 
         public override void waitToBeReady()
-        {
-            
+        {            
         }
 
         public override Card play(GameState gameState)
         {
-            throw new NotImplementedException();
+            PlayerHand hand = playerHand;
+            cmdInterface.SendOutput(playerId + " - Play: " + hand);
+            string inputCards = cmdInterface.GetInputLine();
+            return ConvertStringToCards(inputCards).First();
         }
 
         public override void removeCard(Card card)

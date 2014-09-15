@@ -9,7 +9,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace EuchreCore.CardGames
 {
-    internal class HeartsPlayingGameStage : GameStage
+    public class HeartsPlayingGameStage : GameStage
     {
         private List<Player> players; 
 
@@ -38,7 +38,7 @@ namespace EuchreCore.CardGames
 
                 PlayRound(firstPlayerMark, gameState);
                 
-                if (numInternalRounds == 13)
+                if (numInternalRounds == 13 || !players[0].PlayerHand.GetListCards().Any())
                 {
                     continueRound = false;
                 }
@@ -69,6 +69,8 @@ namespace EuchreCore.CardGames
                 // each player must play one card
                 // in > (game state), out < (card played)                
                 Card c = players.ElementAt(currentPlayerRound).play(gameState);
+
+                players.ElementAt(currentPlayerRound).PlayerHand.Remove(c);
 
                 // update the game state to reflect (card played)
                 gameState.PutCardInMiddle(c, currentPlayerRound);
