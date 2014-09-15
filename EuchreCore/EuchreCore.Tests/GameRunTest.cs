@@ -30,7 +30,7 @@ namespace EuchreCore.Tests
 
                 // do some output verification
 
-                players.Add(new HeartsPlayer(input, i, playerHand));                
+                players.Add(new HeartsPlayer(input, i, playerHand));
             }
 
             GameStage playingStage = new HeartsPlayingGameStage(players);
