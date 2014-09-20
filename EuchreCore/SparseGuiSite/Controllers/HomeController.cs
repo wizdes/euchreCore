@@ -84,16 +84,16 @@ namespace SparseGuiSite.Controllers
 
             // pass the game state information to the ViewBag
             // pass guid to the ViewBag
-            ViewData["gameDetails"] = game;
+            ViewData["gameDetails"] = game.ToString();
             ViewData["gameId"] = gameGuid.ToString();
             ViewData["gameDescription"] = gameDetails;
-            ViewData["AllDetails"] = "";
+            ViewData["CmdDetails"] = "";
             ViewData["playerNum"] = "0";
 
             foreach (Player p in game.Players)
             {
                 WebCmdInterface webInterface = ((WebCmdInterface) p.CmdInterface);
-                ViewData["AllDetails"] += webInterface.currentOutput + "\n";
+                ViewData["CmdDetails"] += webInterface.currentOutput + "\n";
                 if (webInterface.isWaiting)
                 {
                     ViewData["playerNum"] = p.Id;

@@ -3,7 +3,9 @@
     var gameId = ViewData["gameId"];
     var gameDescription = ViewData["gameDescription"];
     var playerNum = ViewData["playerNum"];
-    var gameDetails = ViewData["AllDetails"];
+    var cmdDetails = ViewData["CmdDetails"];
+    var gameDetails = ViewData["gameDetails"];
+    var playerStr = "Player: " + ViewData["playerNum"];
 }
 
 <div class="row">
@@ -26,8 +28,10 @@
                 Card inputs: <input type="text" name="input">                    
                 <input type="submit" value="play">
             </form>
-            @Html.Raw(Html.Encode(gameDetails).Replace("\n", "<br />"))
-            @playerNum
+            @Html.Raw(Html.Encode(cmdDetails).Replace("\n", "<br />"))
+            @playerStr
+            <br/>
+            @Html.Raw(Html.Encode(gameDetails).Replace("\n", "<br />"))            
         }
     </div>
 </div>

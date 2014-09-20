@@ -14,6 +14,8 @@ namespace EuchreCore.CardGames
         private Deck deck;
         private List<Player> players;
 
+        private GameStage currentGameStage;
+
         public List<Player> Players
         {
             get { return players; }
@@ -23,6 +25,7 @@ namespace EuchreCore.CardGames
         {
             players = new List<Player>();
             deck = new Deck();
+            currentGameStage = null;
         }
 
         public override void init(IOType inputType)
@@ -72,12 +75,13 @@ namespace EuchreCore.CardGames
             while (!gameFinished)
             {
                 GameStage passingStage = new HeartsPassingGameStage(players);
-
+                currentGameStage = passingStage;
                 // after this, each playerHand is valid, and players know what is going on
                 passingStage.run(round);
 
                 // run the playing stage of the game
                 GameStage playingStage = new HeartsPlayingGameStage(players);
+                currentGameStage = playingStage;
 
                 playingStage.run(round);
 
@@ -89,5 +93,16 @@ namespace EuchreCore.CardGames
         {
             // do nothing.
         }
+
+        public override string ToString()
+        {
+            if (currentGameStage == null)
+            {
+                return null;
+            }
+
+            return currentGameStage.ToString();
+        }
+
     }
 }

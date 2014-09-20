@@ -28,8 +28,6 @@ namespace EuchreCore.Tests
                 input.inputs.Add("c2");
                 input.inputs.Add("c3");
 
-                // do some output verification
-
                 players.Add(new HeartsPlayer(input, i, playerHand));
             }
 
@@ -37,7 +35,13 @@ namespace EuchreCore.Tests
 
             playingStage.run(0);
 
-            // do some more verification stuff.
+            // TODO: do some more verification stuff.
+        }
+
+        [TestMethod]
+        public void HeartsGameEndGameRun()
+        {
+            
         }
     }
 }

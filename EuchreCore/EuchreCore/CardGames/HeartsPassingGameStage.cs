@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO.Ports;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,11 +11,14 @@ namespace EuchreCore.CardGames
 {
     class HeartsPassingGameStage : GameStage
     {
-        private List<Player> players; 
+        private List<Player> players;
+        private List<List<Card>> cardsToPass;
+
 
         public HeartsPassingGameStage(List<Player> players)
         {
             this.players = players;
+            cardsToPass = new List<List<Card>>();
         }
 
         public override void run()
@@ -24,8 +28,6 @@ namespace EuchreCore.CardGames
 
         public override void run(int roundNumber)
         {
-            List<List<Card>> cardsToPass = new List<List<Card>>();
-
             // each player selects the cards they want to pass over
             foreach (Player player in players)
             {
@@ -79,6 +81,25 @@ namespace EuchreCore.CardGames
             }
 
             return cardsToMap;
+        }
+
+        public override string ToString()
+        {
+            string str = "Passing stage of hearts: \n";
+
+            int player = 0;
+
+            foreach (List<Card> handsToPass in cardsToPass)
+            {
+                str += "Player " + player++ + ": ";
+                foreach (Card c in handsToPass)
+                {
+                    str += c + " ";
+                }
+                str += " to pass.\n";
+            }
+
+            return str;
         }
     }
 }

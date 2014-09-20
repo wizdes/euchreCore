@@ -11,11 +11,13 @@ namespace EuchreCore.CardGames
 {
     public class HeartsPlayingGameStage : GameStage
     {
-        private List<Player> players; 
+        private List<Player> players;
+        private HeartsGameState gameState;
 
         public HeartsPlayingGameStage(List<Player> players)
         {
             this.players = players;
+            gameState = new HeartsGameState();
         }
 
         public override void run()
@@ -27,8 +29,6 @@ namespace EuchreCore.CardGames
         {
             bool continueRound = true;
             int numInternalRounds = 0;
-
-            HeartsGameState gameState = new HeartsGameState();
 
             while (continueRound)
             {
@@ -103,6 +103,35 @@ namespace EuchreCore.CardGames
             }
 
             return -1;
+        }
+
+        public override string ToString()
+        {
+            string str = "Cards in middle: ";
+
+            foreach (Trick t in gameState.CardsInMiddle)
+            {
+                str += t.card + " played by: " + t.player;
+            }
+
+            str += "\n";
+
+            str += "Cards collected: \n";
+
+            int playerId = 0;
+
+            for (int i = 0; i < 4; i++)
+            {
+                str += "Player " + i + ": ";
+                foreach (Card c in gameState.CardsCollected[i])
+                {
+                    str += c + " ";
+                }
+
+                str += "\n";
+            }
+
+            return str;
         }
     }
 }
