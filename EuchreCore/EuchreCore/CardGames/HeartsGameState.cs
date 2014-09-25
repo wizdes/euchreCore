@@ -56,7 +56,7 @@ namespace EuchreCore.CardGames
         public override void ClearCardsInMiddle()
         {
             lastTrickTaker = 0;
-            startingSuit = Suit.None;
+            startingSuit = CardsInMiddle[0].card.Suit;
             int highestValue = CardsInMiddle[0].card.Value;
             foreach (Trick t in CardsInMiddle)
             {

@@ -45,18 +45,26 @@ namespace EuchreCore.Tests
             List<Player> players = new List<Player>();
 
             List<List<string>> preListedCards = new List<List<string>>();
+            List<List<Card>> playerCards = new List<List<Card>>();
 
-            preListedCards.Add(new List<string> { "c9", "hk" });
-            preListedCards.Add(new List<string> { "sk", "c2" });
+            playerCards.Add(new List<Card>{new Card(2, Suit.Clubs), new Card(13, Suit.Hearts)});
+            playerCards.Add(new List<Card> { new Card(13, Suit.Spades), new Card(9, Suit.Clubs) });
+            playerCards.Add(new List<Card> { new Card(10, Suit.Hearts), new Card(9, Suit.Hearts) });
+            playerCards.Add(new List<Card> { new Card(10, Suit.Clubs), new Card(2, Suit.Hearts) });
+
+            preListedCards.Add(new List<string> { "c2", "hk" });
+            preListedCards.Add(new List<string> { "sk", "c9" });
             preListedCards.Add(new List<string> { "h10", "h9" });
             preListedCards.Add(new List<string> { "c10", "h2" });
-
 
             for (int i = 0; i < 4; i++)
             {
                 PlayerHand playerHand = new PlayerHand();
-                playerHand.Add(new Card(2, Suit.Clubs));
-                playerHand.Add(new Card(3, Suit.Clubs));
+
+                for (int j = 0; j < 2; j++)
+                {
+                    playerHand.Add(playerCards[i][j]);
+                }
 
                 MockCmdInterface input = new MockCmdInterface();
 
@@ -68,9 +76,14 @@ namespace EuchreCore.Tests
                 players.Add(new HeartsPlayer(input, i, playerHand));
             }
 
-            GameStage playingStage = new HeartsPlayingGameStage(players);
+            HeartsPlayingGameStage playingStage = new HeartsPlayingGameStage(players);
 
-            playingStage.run(0);            
+            playingStage.run(0);
+
+            Assert.AreEqual(3, players[0].score);
+            Assert.AreEqual(0, players[1].score);
+            Assert.AreEqual(0, players[2].score);
+            Assert.AreEqual(1, players[3].score);
         }
     }
 }
