@@ -1,17 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using EuchreCore.CardGameElements;
+using EuchreCore.CardGames;
+using EuchreCore.PlayerClass;
 
 namespace EuchreCore.AI
 {
     public class RandomRule : CardRule
     {
-        public override Card Decide(List<Card> cards)
+        public override Card Decide(List<Card> cards, GameState gamestate, Player player)
         {
-            throw new NotImplementedException();
+            Random r = new Random();
+            int selectedCard = r.Next(cards.Count);
+            return cards.ToArray()[selectedCard];
         }
     }
 }
