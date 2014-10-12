@@ -13,6 +13,13 @@ namespace EuchreCore.AI
     {
         public override Card Decide(List<Card> cards, GameState gamestate, Player player)
         {
+            List<Card> potentialCards = FilterByRule(cards, gamestate, player);
+
+            throw new NotImplementedException();
+        }
+
+        public List<Card> FilterByRule(List<Card> cards, GameState gamestate, Player player)
+        {
             throw new NotImplementedException();
         }
     }

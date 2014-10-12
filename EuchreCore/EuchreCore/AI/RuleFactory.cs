@@ -9,16 +9,17 @@ namespace EuchreCore.AI
 {
     public class RuleFactory
     {
+        // all rules created by the rule factory need to be start with valid card, and end with a 'choose one' rule
         public CardRule GetBasicAI()
         {
-            CardRule rule = new ValidCardsRule();
-            CardRule nextRule = new GetLowestCardsRule();
+            CardRule baseValidRule = new ValidCardsRule();
+            CardRule filterToLowestCard = new GetLowestCardsRule();
             CardRule randomRole = new RandomRule();
 
-            nextRule.AddRule(randomRole);
-            randomRole.AddRule(nextRule);
+            baseValidRule.AddRule(filterToLowestCard);
+            filterToLowestCard.AddRule(randomRole);
 
-            return rule;
+            return baseValidRule;
         }
     }
 }
