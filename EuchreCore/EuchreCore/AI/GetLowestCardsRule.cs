@@ -20,7 +20,39 @@ namespace EuchreCore.AI
 
         public List<Card> FilterByRule(List<Card> cards, GameState gamestate, Player player)
         {
-            throw new NotImplementedException();
+            Suit[] suits = new Suit[]
+            {
+                Suit.Clubs,
+                Suit.Diamonds,
+                Suit.Hearts,
+                Suit.Spades
+            };
+
+            foreach (Suit s in suits)
+            {
+                Card lowestCard = null;
+                foreach (Card c in cards)
+                {
+                    if (c.Suit.Equals(s))
+                    {
+                        if (lowestCard == null)
+                        {
+                            lowestCard = c;
+                        }
+                        else if(c.Value < lowestCard.Value)
+                        {
+                            lowestCard = c;
+                        }
+                    }
+                }
+
+                if (lowestCard != null)
+                {
+                    cards.RemoveAll(x => x != lowestCard);                    
+                }
+            }
+
+            return cards;
         }
     }
 }
