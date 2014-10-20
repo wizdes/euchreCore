@@ -20,6 +20,20 @@ namespace EuchreCore.AI
 
         public List<Card> FilterByRule(List<Card> cards, GameState gamestate, Player player)
         {
+            bool heartsBroken = false;
+            
+            // here, calculate if hearts has been broken or not
+            
+            if (gamestate.CardsInMiddle.Count == 0)
+            {
+                // any non-hearts card, unless hearts is broken
+
+            }
+            else
+            {
+                
+            }
+
             throw new NotImplementedException();
         }
     }
