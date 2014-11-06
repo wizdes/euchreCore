@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using EuchreCore.AI;
 using EuchreCore.CardGameElements;
 using EuchreCore.CardGames;
 using EuchreCore.Interface;
@@ -84,6 +85,13 @@ namespace EuchreCore.Tests
             Assert.AreEqual(0, players[1].score);
             Assert.AreEqual(0, players[2].score);
             Assert.AreEqual(1, players[3].score);
+        }
+
+        [TestMethod]
+        public void TestAIRules()
+        {
+            CardRule r = new GetLowestCardsRule();
+            
         }
     }
 }

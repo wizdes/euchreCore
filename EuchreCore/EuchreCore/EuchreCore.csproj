@@ -45,6 +45,7 @@
     <Compile Include="AI\CardRule.cs" />
     <Compile Include="AI\GetLowestCardsRule.cs" />
     <Compile Include="AI\RandomRule.cs" />
+    <Compile Include="AI\RuleFactory.cs" />
     <Compile Include="AI\ValidCardsRule.cs" />
     <Compile Include="CardGameElements\Card.cs" />
     <Compile Include="CardGameElements\Deck.cs" />
